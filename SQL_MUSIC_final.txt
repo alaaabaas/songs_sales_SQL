@@ -1,0 +1,100 @@
+/* query 1*/
+SELECT
+  Customer.Country,
+  SUM(InvoiceLine.Quantity) AS 'total quatity ordered'
+FROM Customer
+JOIN Invoice
+  ON Customer.CustomerId = Invoice.CustomerId
+JOIN InvoiceLine
+  ON Invoice.InvoiceId = InvoiceLine.invoiceId
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+
+/* query 2*/
+SELECT
+  Album.Title,
+  Album.AlbumId,
+  SUM(InvoiceLine.Quantity * InvoiceLine.UnitPrice) AS 'sales of each ALbum'
+FROM Customer
+JOIN Invoice
+  ON Customer.CustomerId = Invoice.CustomerId
+JOIN InvoiceLine
+  ON Invoice.InvoiceId = InvoiceLine.invoiceid
+JOIN Track
+  ON InvoiceLine.TrackId = Track.TrackId
+JOIN Album
+  ON Album.AlbumId = Track.AlbumId
+GROUP BY 2
+ORDER BY 3 DESC
+LIMIT 10;
+
+/* query 3*/
+CREATE VIEW M1
+AS
+SELECT
+  Track.TrackId,
+  Genre.Name,
+  Genre.GenreId
+FROM Genre
+JOIN Track
+  ON Genre.GenreId = Track.GenreId;
+
+
+CREATE VIEW I2
+AS
+SELECT
+  Invoice.CustomerId,
+  InvoiceLine.Quantity,
+  InvoiceLine.UnitPrice,
+  InvoiceLine.TrackId
+FROM Invoice
+JOIN InvoiceLine
+  ON Invoice.InvoiceId = InvoiceLine.InvoiceId;
+
+
+SELECT
+  Customer.CustomerId,
+  Customer.FirstName,
+  Customer.LastName,
+  Customer.Email,
+  M1.Name AS 'Genre',
+  SUM(I2.Quantity * I2.UnitPrice) AS 'spent on Rock'
+FROM Customer
+JOIN I2
+  ON Customer.CustomerId = I2.CustomerId
+JOIN M1
+  ON M1.TrackId = I2.TrackId
+WHERE M1.Name = 'Rock'
+GROUP BY 1
+ORDER BY 6 DESC;
+
+/* query 4*/
+CREATE VIEW writers
+AS
+
+SELECT
+  Artist.ArtistId,
+  Artist.Name AS 'artist',
+  COUNT(Track.Name) AS 'songs',
+  Track.GenreId,
+  Track.TrackId
+FROM Artist
+JOIN Album
+  ON Artist.ArtistId = Album.ArtistId
+JOIN Track
+  ON Album.AlbumId = Track.AlbumId
+JOIN Genre
+  ON Genre.GenreId = Track.GenreId
+GROUP BY 1;
+
+SELECT
+  writers.ArtistId,
+  writers.artist,
+  writers.songs
+FROM writers
+JOIN Genre
+  ON Writers.GenreId = Genre.GenreId
+WHERE Genre.Name = 'Rock'
+ORDER BY 3 DESC
+LIMIT 10;
