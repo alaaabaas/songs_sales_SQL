@@ -2,14 +2,15 @@
 analysis of media products orders and sales
 
 
-questions of analysis:
+**questions posed and answered by the project:**
 
-
-Where do most of our valuable customers live ? What countries should we
+<ul>
+<li>Where do most of our valuable customers live ? What countries should we
 target for advertisments?
 
-what are the Top 10 Albums?
+<li>what are the Top 10 Albums?
 
-who spends most on rock albums? 
+<li>who spends most on rock albums? 
 
-who are our most hardworking artists?
+<li>who are our most hardworking artists?
+<\ul>
