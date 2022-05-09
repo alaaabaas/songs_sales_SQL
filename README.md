@@ -2,8 +2,7 @@
 In this project an  analysis of media products ,orders and ,sales
 was made using SQL 
 
-#### to run the code install workbench 
-#### this project is part of data analysis nanodegree The database only available to download from the course Webpage
+
 
 
 **questions posed and answered by the project:**
@@ -18,3 +17,5 @@ target for advertisments?
 
 <li>who are our most hardworking artists?
 
+#### to run the code install workbench 
+#### this project is part of data analysis nanodegree The database only available to download from the course Webpage
