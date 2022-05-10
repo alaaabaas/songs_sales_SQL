@@ -1,5 +1,5 @@
 # songs_sales_SQL
-In this project an  analysis of media products ,orders and ,sales
+In this project an  analysis of media products ,orders and ,sales of an online marketplace database 
 was made using SQL 
 
 
